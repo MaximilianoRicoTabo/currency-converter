@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
   private CurrencyNames from = CurrencyNames.UYU; 
 
   private CurrencyNames to = CurrencyNames.ARS;
-  
+
   /**
    * {@inheritDoc}.
    */
@@ -48,11 +48,14 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
+    RadioButton radioButtonUy = (RadioButton) findViewById(R.id.RadioButton01Uy);
+    radioButtonUy.setVisibility(View.INVISIBLE);
     radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
       public void onCheckedChanged(RadioGroup group, int checkedId) {
         // checkedId is the RadioButton selected
         RadioButton radioButtonAr = (RadioButton) findViewById(R.id.RadioButton3Ar);
         RadioButton radioButtonUy = (RadioButton) findViewById(R.id.RadioButton01Uy);
+        radioButtonUy.setVisibility(View.INVISIBLE);
         RadioButton radioButtonUsd = (RadioButton) findViewById(R.id.RadioButton02Usd);
         RadioButton radioButton = (RadioButton) findViewById(checkedId);
         if (radioButton.getText().equals("ARS")) {
@@ -145,7 +148,11 @@ public class MainActivity extends Activity {
         if (input.length() == 0) {
           Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_LONG).show();
           return;
+        } else if (from.equals(to)) {
+          Toast.makeText(this, "Please select different 'from' or 'to' option. Does not make sense"
+              + "convert from: " + from + " to: " + to, Toast.LENGTH_LONG).show();
         } else {
+          
           TextView label = (TextView) findViewById(R.id.textView2);
           TextView label2 = (TextView) findViewById(R.id.TextView01);
           double amount = Double.parseDouble(input);
