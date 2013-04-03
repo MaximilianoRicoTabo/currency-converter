@@ -32,12 +32,24 @@ import com.globant.currencyconverter.webservice.ParseJson;
  */
 public class MainActivity extends Activity {
 
+  /**
+   * A map containing the currency name as a key and the currency itself.
+   */
   private Map<CurrencyNames,Currency> currencyValues;
 
+  /**
+   * The {@link DataBaseHandler}.
+   */
   private DataBaseHandler databaseHandler;
 
+  /**
+   * The default 'from' app state.
+   */
   private CurrencyNames from = CurrencyNames.UYU; 
 
+  /**
+   * The default 'to' app state.
+   */
   private CurrencyNames to = CurrencyNames.ARS;
 
   /**
@@ -137,8 +149,9 @@ public class MainActivity extends Activity {
   }
 
   /**
+   * Handler for on click convert button event.
    * 
-   * @param view
+   * @param view the {@link View}
    */
   public void onClick(View view) {
     EditText text = (EditText) findViewById(R.id.editText1);
@@ -150,7 +163,7 @@ public class MainActivity extends Activity {
           return;
         } else if (from.equals(to)) {
           Toast.makeText(this, "Please select different 'from' or 'to' option. Does not make sense"
-              + "convert from: " + from + " to: " + to, Toast.LENGTH_LONG).show();
+              + " convert from: " + from + " to: " + to, Toast.LENGTH_LONG).show();
         } else {
           
           TextView label = (TextView) findViewById(R.id.textView2);
@@ -172,8 +185,9 @@ public class MainActivity extends Activity {
   }
 
   /**
-   * 
-   * @return
+   * method to determine whether the device is connected or not.
+   *
+   * @return true if device is connected, false otherwise.
    */
   private boolean isNetworkAvailable() {
     ConnectivityManager connectivityManager =

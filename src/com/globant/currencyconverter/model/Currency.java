@@ -29,11 +29,8 @@ public class Currency {
    * @param value The value of the currency. Cannot be null and greater than 0.
    */
   public Currency(final CurrencyNames name, final double value) {
-    notNull(name, "The name cannot be null");
-    notNull(value, "The name cannot be null");
-    isTrue(value > 0, "The given value must be greater than 0");
-    this.name = name.name();
-    this.value = value;
+    setName(name.name());
+    setValue(value);
   }
 
   /**
@@ -51,6 +48,7 @@ public class Currency {
    * @param name the name of the {@link Currency}.
    */
   public void setName(String name) {
+    notNull(name, "The name cannot be null");
     this.name = name;
   }
 
@@ -69,6 +67,8 @@ public class Currency {
    * @param value The Currency value.
    */
   public void setValue(double value) {
+    notNull(value, "The name cannot be null");
+//    isTrue(value > 0, "The given value must be greater than 0");
     this.value = value;
   }
 }
